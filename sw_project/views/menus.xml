@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem
+            id="project_task_bug_log"
+            name="Bug Log"
+            parent="project.menu_project_config"
+            action="sw_project.view_project_bug_log_action"
+            sequence="7"/>
+</odoo>
