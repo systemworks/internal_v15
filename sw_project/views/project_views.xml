@@ -11,6 +11,8 @@
                 <field name="related_module"/>
                 <field name="functional_area"/>
                 <field name="billing_status"/>
+                <field name="task_code"/>
+                <field name="git_commit_id"/>
             </xpath>
             <xpath expr="//group//field[@name='parent_id']" position="attributes">
                 <attribute name="domain">[('project_id','=',project_id)]</attribute>
@@ -21,7 +23,38 @@
                 <field name="related_module" optional="show"/>
                 <field name="functional_area" optional="show"/>
                 <field name="billing_status" optional="hide"/>
+                <field name="task_code" optional="hide"/>
             </xpath>
+            <div name="button_box" position="inside">
+                <field name="bug_log_id" invisible="1"/>
+                <button name="%(view_project_bug_log_action)d" type="action" class="oe_stat_button">
+                    <field name="bug_log_count" widget="statinfo" string="Bug Logs"/>
+                </button>
+            </div>
+            <div name="button_box" position="inside">
+                <field name="change_request_log_id" invisible="1"/>
+                <button name="%(view_project_change_request_log_action)d" type="action" class="oe_stat_button">
+                    <field name="change_request_log_count" widget="statinfo" string="Change Request Logs"/>
+                </button>
+            </div>
+            <div name="button_box" position="inside">
+                <field name="risk_log_id" invisible="1"/>
+                <button name="%(view_project_risk_log_action)d" type="action" class="oe_stat_button">
+                    <field name="risk_log_count" widget="statinfo" string="Risk Logs"/>
+                </button>
+            </div>
+            <div name="button_box" position="inside">
+                <field name="decision_log_id" invisible="1"/>
+                <button name="%(view_project_decision_log_action)d" type="action" class="oe_stat_button">
+                    <field name="decision_log_id" widget="statinfo" string="Decision Logs"/>
+                </button>
+            </div>
+            <div name="button_box" position="inside">
+                <field name="information_log_id" invisible="1"/>
+                <button name="%(view_project_information_log_action)d" type="action" class="oe_stat_button">
+                    <field name="information_log_count" widget="statinfo" string="Information Logs"/>
+                </button>
+            </div>
         </field>
     </record>
     <record model="ir.ui.view" id="view_task_form2_inherited">

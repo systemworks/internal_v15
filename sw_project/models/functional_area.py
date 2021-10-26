@@ -6,3 +6,4 @@ class FunctionalArea(models.Model):
     _description = 'Functional Area'
 
     name = fields.Char(string="Name")
+    module_id = fields.Many2one('project.odoo.module', string="Module")

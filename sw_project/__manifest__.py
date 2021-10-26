@@ -9,6 +9,12 @@
     "depends": ['project', 'hr_timesheet'],
     "data": [
         'views/bug_log_views.xml',
+        'views/change_request_log_views.xml',
+        'views/decision_log_views.xml',
+        'views/functional_area_views.xml',
+        'views/information_log_views.xml',
+        'views/risk_log_views.xml',
+        'views/related_module_views.xml',
         'views/menus.xml',
         'views/project_views.xml',
         'security/ir.model.access.csv',

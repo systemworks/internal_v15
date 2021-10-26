@@ -6,4 +6,40 @@
             parent="project.menu_project_config"
             action="sw_project.view_project_bug_log_action"
             sequence="7"/>
+    <menuitem
+            id="project_related_module"
+            name="Modules"
+            parent="project.menu_project_config"
+            action="sw_project.view_project_related_module_action"
+            sequence="8"/>
+    <menuitem
+            id="project_functional_area"
+            name="Functional Area"
+            parent="project.menu_project_config"
+            action="sw_project.view_project_functional_area_action"
+            sequence="9"/>
+    <menuitem
+            id="project_change_log"
+            name="Change Log"
+            parent="project.menu_project_config"
+            action="sw_project.view_project_change_request_log_action"
+            sequence="10"/>
+    <menuitem
+            id="project_risk_log"
+            name="Risk Log"
+            parent="project.menu_project_config"
+            action="sw_project.view_project_risk_log_action"
+            sequence="11"/>
+    <menuitem
+            id="project_decision_log"
+            name="Decision Log"
+            parent="project.menu_project_config"
+            action="sw_project.view_project_decision_log_action"
+            sequence="12"/>
+    <menuitem
+            id="project_information_log"
+            name="Information Log"
+            parent="project.menu_project_config"
+            action="sw_project.view_project_information_log_action"
+            sequence="13"/>
 </odoo>

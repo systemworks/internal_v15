@@ -6,3 +6,4 @@ class RelatedModule(models.Model):
     _description = 'Related Module'
 
     name = fields.Char(string="Name")
+
