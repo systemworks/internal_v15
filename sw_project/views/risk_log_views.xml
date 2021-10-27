@@ -13,6 +13,29 @@
                 </p>
             </field>
         </record>
+
+        <record model="ir.ui.view" id="project_risk_log_view_form">
+            <field name="name">project.risk.log.view.form</field>
+            <field name="model">project.risk.log</field>
+            <field name="arch" type="xml">
+                <form string="Risk Log">
+                    <group>
+                        <group>
+                            <field name="name" required="1"/>
+                            <field name="description" widget="html"/>
+                        </group>
+                        <group>
+                            <field name="related_task"/>
+                            <field name="logged_by"/>
+                            <field name="logged_on"/>
+                            <field name="log_source"/>
+                            <field name="related_meeting"/>
+                        </group>
+                    </group>
+                </form>
+            </field>
+        </record>
+
         <record id="project_risk_log_view_tree"
                 model="ir.ui.view">
             <field name="name">project.risk.log.view.tree</field>
@@ -21,7 +44,7 @@
                    type="xml">
                 <tree string="Risk Log">
                     <field name="name"/>
-                    <field name="description"/>
+                    <field name="description" widget="html"/>
                     <field name="related_task"/>
                     <field name="logged_by"/>
                     <field name="logged_on"/>

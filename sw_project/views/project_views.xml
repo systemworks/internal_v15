@@ -5,6 +5,9 @@
         <field name="model">project.task</field>
         <field name="inherit_id" ref="project.view_task_form2"/>
         <field name="arch" type="xml">
+            <xpath expr="//group//field[@name='parent_id']" position="attributes">
+                <attribute name="attrs">{'required':[('billing_type','=','sub_task')]}</attribute>
+            </xpath>
             <xpath expr="//group//field[@name='partner_id']" position="after">
                 <field name="billing_type"/>
                 <field name="task_type_id" attrs="{'required':[('billing_type','=','sub_task')]}"/>
@@ -46,7 +49,7 @@
             <div name="button_box" position="inside">
                 <field name="decision_log_id" invisible="1"/>
                 <button name="%(view_project_decision_log_action)d" type="action" class="oe_stat_button">
-                    <field name="decision_log_id" widget="statinfo" string="Decision Logs"/>
+                    <field name="decision_log_count" widget="statinfo" string="Decision Logs"/>
                 </button>
             </div>
             <div name="button_box" position="inside">

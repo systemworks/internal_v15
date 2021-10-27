@@ -13,6 +13,29 @@
                 </p>
             </field>
         </record>
+
+        <record model="ir.ui.view" id="project_information_log_view_form">
+            <field name="name">project.information.log.view.form</field>
+            <field name="model">project.information.log</field>
+            <field name="arch" type="xml">
+                <form string="Information Log">
+                    <group>
+                        <group>
+                            <field name="name" required="1"/>
+                            <field name="description" widget="html"/>
+                        </group>
+                        <group>
+                            <field name="related_task"/>
+                            <field name="logged_by"/>
+                            <field name="logged_on"/>
+                            <field name="log_source"/>
+                            <field name="related_meeting"/>
+                        </group>
+                    </group>
+                </form>
+            </field>
+        </record>
+
         <record id="project_information_log_view_tree"
                 model="ir.ui.view">
             <field name="name">project.information.log.view.tree</field>
@@ -21,7 +44,7 @@
                    type="xml">
                 <tree string="Information Log">
                     <field name="name" />
-                    <field name="description"/>
+                    <field name="description" widget="html"/>
                     <field name="related_task"/>
                     <field name="logged_by"/>
                     <field name="logged_on" />
