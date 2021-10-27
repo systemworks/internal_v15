@@ -29,33 +29,9 @@
                 <field name="task_code" optional="hide"/>
             </xpath>
             <div name="button_box" position="inside">
-                <field name="bug_log_id" invisible="1"/>
-                <button name="%(view_project_bug_log_action)d" type="action" class="oe_stat_button">
-                    <field name="bug_log_count" widget="statinfo" string="Bug Logs"/>
-                </button>
-            </div>
-            <div name="button_box" position="inside">
-                <field name="change_request_log_id" invisible="1"/>
-                <button name="%(view_project_change_request_log_action)d" type="action" class="oe_stat_button">
-                    <field name="change_request_log_count" widget="statinfo" string="Change Request Logs"/>
-                </button>
-            </div>
-            <div name="button_box" position="inside">
-                <field name="risk_log_id" invisible="1"/>
-                <button name="%(view_project_risk_log_action)d" type="action" class="oe_stat_button">
-                    <field name="risk_log_count" widget="statinfo" string="Risk Logs"/>
-                </button>
-            </div>
-            <div name="button_box" position="inside">
-                <field name="decision_log_id" invisible="1"/>
-                <button name="%(view_project_decision_log_action)d" type="action" class="oe_stat_button">
-                    <field name="decision_log_count" widget="statinfo" string="Decision Logs"/>
-                </button>
-            </div>
-            <div name="button_box" position="inside">
-                <field name="information_log_id" invisible="1"/>
-                <button name="%(view_project_information_log_action)d" type="action" class="oe_stat_button">
-                    <field name="information_log_count" widget="statinfo" string="Information Logs"/>
+                <field name="task_log_id" invisible="1"/>
+                <button name="%(view_project_task_log_action)d" context="{'default_related_task_id': id}" type="action" class="oe_stat_button">
+                    <field name="task_log_count" widget="statinfo" string="Logs"/>
                 </button>
             </div>
         </field>

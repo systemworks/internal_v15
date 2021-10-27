@@ -1,59 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data>
-        <record id="view_project_information_log_action" model="ir.actions.act_window">
-            <field name="name">Information Log</field>
-            <field name="res_model">project.information.log</field>
+        <record id="view_project_task_log_action" model="ir.actions.act_window">
+            <field name="name">Task Log</field>
+            <field name="res_model">project.task.log</field>
             <field name="view_mode">tree,form</field>
             <field name="context">{'search_default_filter_active': 1}</field>
             <field name="help"
                    type="html">
                 <p class="o_view_nocontent_smiling_face">
-                    Add an Information Log
+                    Add an Log
                 </p>
             </field>
         </record>
 
-        <record model="ir.ui.view" id="project_information_log_view_form">
-            <field name="name">project.information.log.view.form</field>
-            <field name="model">project.information.log</field>
+        <record model="ir.ui.view" id="project_task_log_view_form">
+            <field name="name">project.task.log.view.form</field>
+            <field name="model">project.task.log</field>
             <field name="arch" type="xml">
-                <form string="Information Log">
+                <form string="Task Log">
                     <group>
                         <group>
                             <field name="name" required="1"/>
                             <field name="description" widget="html"/>
                         </group>
                         <group>
-                            <field name="related_task"/>
+                            <field name="related_task_id"/>
                             <field name="logged_by"/>
                             <field name="logged_on"/>
                             <field name="log_source"/>
                             <field name="related_meeting"/>
+                            <field name="log_type"/>
                         </group>
                     </group>
                 </form>
             </field>
         </record>
 
-        <record id="project_information_log_view_tree"
+        <record id="project_bug_log_view_tree"
                 model="ir.ui.view">
-            <field name="name">project.information.log.view.tree</field>
-            <field name="model">project.information.log</field>
+            <field name="name">project.task.log.view.tree</field>
+            <field name="model">project.task.log</field>
             <field name="arch"
                    type="xml">
-                <tree string="Information Log">
-                    <field name="name" />
+                <tree string="Task Log">
+                    <field name="name"/>
                     <field name="description" widget="html"/>
-                    <field name="related_task"/>
+                    <field name="related_task_id"/>
                     <field name="logged_by"/>
-                    <field name="logged_on" />
+                    <field name="logged_on"/>
                     <field name="log_source"/>
                     <field name="related_meeting"/>
+                    <field name="log_type"/>
                 </tree>
             </field>
         </record>
-
     </data>
 </odoo>
 

@@ -21,30 +21,10 @@ class Task(models.Model):
     task_code = fields.Char(string="Task Code", compute='compute_sequence_task', readonly=True)
     git_commit_id = fields.Char(string="Commit Hash")
 
-    bug_log_id = fields.One2many('project.task.bug.log', 'related_task', string='Bug Log ID')
-    bug_log_count = fields.Integer(
-        string='Bug Log Count',
-        compute='_bug_log_count'
-    )
-    change_request_log_id = fields.One2many('project.change.request.log', 'related_task', string='Change Request ID')
-    change_request_log_count = fields.Integer(
-        string='Change Request Count',
-        compute='_change_request_log_count'
-    )
-    risk_log_id = fields.One2many('project.risk.log', 'related_task', string='Risk Log ID')
-    risk_log_count = fields.Integer(
-        string='Risk Log Count',
-        compute='_risk_log_count'
-    )
-    decision_log_id = fields.One2many('project.decision.log', 'related_task', string='Decision Log ID')
-    decision_log_count = fields.Integer(
-        string='Decision Log Count',
-        compute='_decision_log_count'
-    )
-    information_log_id = fields.One2many('project.information.log', 'related_task', string='Information Log ID')
-    information_log_count = fields.Integer(
-        string='Information Log Count',
-        compute='_information_log_count'
+    task_log_id = fields.One2many('project.task.log', 'related_task_id', string='Task Log ID')
+    task_log_count = fields.Integer(
+        string='Task Log Count',
+        compute='_task_log_count'
     )
 
     def compute_sequence_task(self):
@@ -65,27 +45,7 @@ class Task(models.Model):
         if len(self.name) > 50:
             raise ValidationError('Number of characters must not exceed 50')
 
-    @api.depends('bug_log_id')
-    def _bug_log_count(self):
+    @api.depends('task_log_id')
+    def _task_log_count(self):
         for partner in self:
-            partner.bug_log_count = len(partner.bug_log_id)
-
-    @api.depends('change_request_log_id')
-    def _change_request_log_count(self):
-        for partner in self:
-            partner.change_request_log_count = len(partner.change_request_log_id)
-
-    @api.depends('risk_log_id')
-    def _risk_log_count(self):
-        for partner in self:
-            partner.risk_log_count = len(partner.risk_log_id)
-
-    @api.depends('decision_log_id')
-    def _decision_log_count(self):
-        for partner in self:
-            partner.decision_log_count = len(partner.decision_log_id)
-
-    @api.depends('information_log_id')
-    def _information_log_count(self):
-        for partner in self:
-            partner.information_log_count = len(partner.information_log_id)
+            partner.task_log_count = len(partner.task_log_id)
