@@ -18,7 +18,7 @@ class Task(models.Model):
     billing_status = fields.Selection([
         ('to bill', 'To Bill'),
         ('billed', 'Billed')], string="Billing Status")
-    task_code = fields.Char(string="Task Code", compute='compute_sequence_task', readonly=True)
+    task_code = fields.Char(string="Task Code", readonly=True)
     git_commit_id = fields.Char(string="Commit Hash")
 
     task_log_id = fields.One2many('project.task.log', 'related_task_id', string='Task Log ID')
@@ -27,13 +27,14 @@ class Task(models.Model):
         compute='_task_log_count'
     )
 
-    def compute_sequence_task(self):
-        for task in self:
-            seq_no = self.env['ir.sequence'].next_by_code('project.task')
-            task.write({
-                'task_code': seq_no,
-            })
-        return True
+    @api.model
+    def create(self, vals):
+        res = super(Task, self).create(vals)
+        seq_no = self.env['ir.sequence'].next_by_code('project.task')
+        res.write({
+            'task_code': seq_no,
+        })
+        return res
 
     @api.onchange('parent_id')
     def on_change(self):
