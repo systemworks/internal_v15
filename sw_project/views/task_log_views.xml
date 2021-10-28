@@ -20,38 +20,34 @@
             <field name="arch" type="xml">
                 <form string="Task Log">
                     <group>
-                        <group>
-                            <field name="name" required="1"/>
-                            <field name="description" widget="html"/>
-                        </group>
-                        <group>
-                            <field name="related_task_id"/>
-                            <field name="logged_by"/>
-                            <field name="logged_on"/>
-                            <field name="log_source"/>
-                            <field name="related_meeting"/>
-                            <field name="log_type"/>
-                        </group>
+                        <field name="name" readonly="1"/>
+                        <field name="log_type" required="1"/>
+                        <field name="description" widget="html"/>
+                        <field name="logged_by"/>
+                        <field name="logged_on"/>
+                        <field name="log_source"/>
+                        <field name="related_task_id"/>
+                        <field name="related_meeting"/>
                     </group>
                 </form>
             </field>
         </record>
 
-        <record id="project_bug_log_view_tree"
+        <record id="project_task_log_view_tree"
                 model="ir.ui.view">
             <field name="name">project.task.log.view.tree</field>
             <field name="model">project.task.log</field>
             <field name="arch"
                    type="xml">
-                <tree string="Task Log">
-                    <field name="name"/>
+                <tree string="Task Log" editable="top">
+                    <field name="name" readonly="1"/>
+                    <field name="log_type" required="1"/>
                     <field name="description" widget="html"/>
-                    <field name="related_task_id"/>
                     <field name="logged_by"/>
                     <field name="logged_on"/>
                     <field name="log_source"/>
+                    <field name="related_task_id"/>
                     <field name="related_meeting"/>
-                    <field name="log_type"/>
                 </tree>
             </field>
         </record>
