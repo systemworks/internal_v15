@@ -8,7 +8,7 @@ class TaskLog(models.Model):
     name = fields.Char(string="Log Code")
     description = fields.Char(string="Description")
     related_task_id = fields.Many2one('project.task', string="Related Task", required=True)
-    project_id = fields.Many2one(related='related_task_id.project_id' , string="Project")
+    project_id = fields.Many2one('project.project', string="Project")
     logged_by = fields.Many2one('res.partner',
                                 string='Logged By',
                                 required=True)

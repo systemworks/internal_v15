@@ -46,7 +46,7 @@
                     <field name="logged_by"/>
                     <field name="logged_on"/>
                     <field name="log_source"/>
-                    <field name="related_task_id"/>
+                    <field name="related_task_id" domain="[('project_id', '=', project_id)]"/>
                     <field name="related_meeting"/>
                     <button name="action_log_form_view" type="object" string="Check Out">
                     </button>
