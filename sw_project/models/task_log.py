@@ -50,3 +50,13 @@ class TaskLog(models.Model):
                 'name': seq_no,
             })
         return res
+
+    def action_log_form_view(self):
+        action = self.env["ir.actions.actions"]._for_xml_id("sw_project.view_project_task_log_action")
+        action['res_id'] = self.id
+        action['view_id'] = self.env.ref('sw_project.project_task_log_view_form').id
+        action['view_type'] = 'form'
+        action['view_mode'] = 'form'
+        del action['views']
+
+        return action
