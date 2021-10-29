@@ -40,7 +40,7 @@
             <field name="arch"
                    type="xml">
                 <tree string="Task Log" editable="top">
-                    <field name="name" readonly="1"/>
+                    <field name="project_id" required="1"/>
                     <field name="log_type" required="1"/>
                     <field name="description" widget="html"/>
                     <field name="logged_by"/>
