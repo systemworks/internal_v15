@@ -8,6 +8,9 @@
             <xpath expr="//group//field[@name='parent_id']" position="attributes">
                 <attribute name="attrs">{'required':[('billing_type','=','sub_task')]}</attribute>
             </xpath>
+            <xpath expr="//group//field[@name='parent_id']" position="attributes">
+                <attribute name="groups"/>
+            </xpath>
             <xpath expr="//group//field[@name='partner_id']" position="after">
                 <field name="billing_type"/>
                 <field name="task_type_id" attrs="{'required':[('billing_type','=','sub_task')]}"/>
