@@ -4,6 +4,19 @@ from odoo.exceptions import UserError, ValidationError
 
 class Project(models.Model):
     _inherit = "project.project"
+    deployment_id = fields.Many2one("project.project", string="Deployment")
+
+    @api.model
+    def create(self, vals):
+        res = super(Project, self).create(vals)
+        if self._context.get('deployment_id'):
+            res.deployment_id=self._context.get('deployment_id')
+            if self._context.get('task_id'):
+                task=self.env['project.task'].browse([self._context.get('task_id')])
+                newTask=task.copy()
+                newTask.name=task.name
+                newTask.project_id=res.id
+        return res
 
 
 class Task(models.Model):
@@ -50,3 +63,42 @@ class Task(models.Model):
     def _task_log_count(self):
         for partner in self:
             partner.task_log_count = len(partner.task_log_id)
+
+    ##def deploy_button_action(self):
+     ##   action = self.env["ir.actions.actions"]._for_xml_id("project.edit_project")
+      ##  action['context'] = {'default_project_id': active_id}
+       # return action
+
+    def deploy_button_action(self):
+        view = self.env.ref('project.edit_project')
+
+        project_deployment = self.env['project.project'].sudo().search([
+            ('deployment_id', '=', self.project_id.id)
+        ])
+        if not project_deployment:
+            return {
+                'name': _('Project'),
+                'type': 'ir.actions.act_window',
+                'view_mode': 'form',
+                'res_model': 'project.project',
+                'views': [(view.id, 'form')],
+                'view_id': view.id,
+                'target': 'main',
+                'context':{'deployment_id':self.project_id.id,'task_id':self.id},
+            }
+        else:
+            newTask=self.copy()
+            newTask.name=self.name
+            newTask.project_id=project_deployment.id
+
+            return {
+                'name': _('Project'),
+                'type': 'ir.actions.act_window',
+                'view_mode': 'form',
+                'res_model': 'project.project',
+                'views': [(view.id, 'form')],
+                'view_id': view.id,
+                'target': 'main',
+                'res_id':project_deployment.id
+            }
+
