@@ -32,13 +32,15 @@ class Task(models.Model):
         ('to bill', 'To Bill'),
         ('billed', 'Billed')], string="Billing Status")
     task_code = fields.Char(string="Task Code", readonly=True)
-    git_commit_id = fields.Char(string="Commit Hash")
+    git_commit_id = fields.Char(string="Commit Hash", tracking=True)
 
     task_log_id = fields.One2many('project.task.log', 'related_task_id', string='Task Log ID')
     task_log_count = fields.Integer(
         string='Task Log Count',
         compute='_task_log_count'
     )
+
+    deployed_indicator = fields.Boolean(string="Deployed", tracking=True)
 
     @api.model
     def create(self, vals):
@@ -84,7 +86,7 @@ class Task(models.Model):
                 'views': [(view.id, 'form')],
                 'view_id': view.id,
                 'target': 'main',
-                'context':{'deployment_id':self.project_id.id,'task_id':self.id},
+                'context':{'deployment_id':self.project_id.id,'task_id':self.id, 'default_deployed_indicator':True},
             }
         else:
             newTask=self.copy()

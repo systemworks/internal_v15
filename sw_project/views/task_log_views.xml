@@ -51,6 +51,8 @@
                     <field name="related_meeting"/>
                     <button name="action_log_form_view" type="object" string="Check Out">
                     </button>
+                    <button name="action_new_task_view" type="object" string="New Task">
+                    </button>
                 </tree>
             </field>
         </record>

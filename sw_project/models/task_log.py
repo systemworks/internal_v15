@@ -61,3 +61,13 @@ class TaskLog(models.Model):
         del action['views']
 
         return action
+
+    def action_new_task_view(self):
+        action = self.env["ir.actions.actions"]._for_xml_id("project.action_view_task")
+        action['context'] = {'default_project_id': self.project_id.id}
+        action['view_id'] = self.env.ref('sw_project.view_task_inherit_view_task_form2').id
+        action['view_type'] = 'form'
+        action['view_mode'] = 'form'
+        del action['views']
+
+        return action

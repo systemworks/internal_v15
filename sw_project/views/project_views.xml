@@ -6,7 +6,8 @@
         <field name="inherit_id" ref="project.view_task_form2"/>
         <field name="arch" type="xml">
             <header position="inside">
-                <button string="Deploy" name="deploy_button_action" type="object" class="oe_highlight"/>
+                <button string="Deploy" name="deploy_button_action" type="object" class="oe_highlight"
+                        attrs="{'invisible':[('deployed_indicator','=', True)]}"/>
             </header>
             <xpath expr="//group//field[@name='parent_id']" position="attributes">
                 <attribute name="attrs">{'required':[('billing_type','=','sub_task')]}</attribute>
@@ -15,13 +16,14 @@
                 <attribute name="groups"/>
             </xpath>
             <xpath expr="//group//field[@name='partner_id']" position="after">
-                <field name="billing_type"/>
-                <field name="task_type_id" attrs="{'required':[('billing_type','=','sub_task')]}"/>
-                <field name="related_module"/>
-                <field name="functional_area"/>
-                <field name="billing_status"/>
-                <field name="task_code"/>
-                <field name="git_commit_id"/>
+                <field name="billing_type"  attrs="{'readonly':[('deployed_indicator','=', True)]}"/>
+                <field name="task_type_id" attrs="{'readonly':[('deployed_indicator','=', True)],'required':[('billing_type','=','sub_task')]}"/>
+                <field name="related_module" attrs="{'readonly':[('deployed_indicator','=', True)]}"/>
+                <field name="functional_area" attrs="{'readonly':[('deployed_indicator','=', True)]}"/>
+                <field name="billing_status" attrs="{'readonly':[('deployed_indicator','=', True)]}"/>
+                <field name="task_code" attrs="{'readonly':[('deployed_indicator','=', True)]}"/>
+                <field name="git_commit_id" attrs="{'readonly':[('deployed_indicator','=', True)]}"/>
+                <field name="deployed_indicator" />
             </xpath>
             <xpath expr="//group//field[@name='parent_id']" position="attributes">
                 <attribute name="domain">[('project_id','=',project_id)]</attribute>
